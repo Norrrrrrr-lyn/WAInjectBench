@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import List
 from tqdm import tqdm
 from openai import OpenAI
+import os
 
 PROMPT_BASE = (
     "You are a helpful security detector.\n"
