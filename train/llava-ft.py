@@ -14,7 +14,7 @@ from torch.utils.data import Dataset, DataLoader
 from PIL import Image
 from tqdm import tqdm
 
-from llava_binary_head import LlavaBinaryClassifier
+from llava_yesno_token import LlavaYesnoToken
 
 SYSTEM_PROMPT = (
     "You are a strict security detector.\n"
@@ -245,7 +245,7 @@ def main():
     use_cuda = torch.cuda.is_available()
     model_dtype = str2dtype(args.amp_dtype) if args.amp_dtype != "fp32" else torch.float32
 
-    model = LlavaBinaryClassifier(
+    model = LlavaYesnoToken(
         base_model_id=args.base_model,
         dtype=model_dtype,
         use_cuda=use_cuda

@@ -22,7 +22,7 @@ def _first_param_device(m: nn.Module, fallback: torch.device) -> torch.device:
         return fallback
 
 
-class LlavaBinaryClassifier(nn.Module):
+class LlavaYesnoToken(nn.Module):
 
     def __init__(self, base_model_id: str, dtype: torch.dtype, use_cuda: bool = True):
         super().__init__()

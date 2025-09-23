@@ -51,8 +51,6 @@ Available detectors:
 
 PromptArmor → requires OPENAI_API_KEY as environment variable.
 
-Embedding-T → requires downloading our pretrained embedding model and setting its path in detector_text/embedding-t.py.
-
 DataSentinel →
 
 ```bash
@@ -86,7 +84,11 @@ Follow its README to configure MiniGPT4.
 
 LLaVA-1.5-7B-FT → requires downloading our finetuned model and setting its path in detector_image/llava.py.
 
-### 🏋️ Training
+### 🔹 In-domain Generalization
+
+We also provide in-domain trained versions of the Embedding-T and Embedding-I models, available in model/embedding-t/in-domain and model/embedding-i/in-domain. To use them, follow the same evaluation procedure as in the main experiments, but update the model path in detector_text/embedding-t.py and detector_image/embedding-i.py.
+
+## 🏋️ Training
 
 We provide code for training embedding-based binary classifiers for both text and image.
 
