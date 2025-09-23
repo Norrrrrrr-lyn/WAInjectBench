@@ -1,0 +1,12 @@
+{"data_name": "img_caption.jsonl", "fpr": 0.0, "detect_ids": [], "total_num": 226}
+{"data_name": "web_text.jsonl", "fpr": 0.0, "detect_ids": [], "total_num": 1502}
+{"data_name": "email_msg.jsonl", "fpr": 0.0, "detect_ids": [], "total_num": 173}
+{"data_name": "comment_issue.jsonl", "fpr": 0.0, "detect_ids": [], "total_num": 806}
+{"data_name": "VPI_E_M.jsonl", "tpr": 0.0, "detect_ids": [], "total_num": 31}
+{"data_name": "wasp.jsonl", "tpr": 0.0, "detect_ids": [], "total_num": 84}
+{"data_name": "popup.jsonl", "tpr": 0.0, "detect_ids": [], "total_num": 216}
+{"data_name": "EIA_w_EI.jsonl", "tpr": 0.0, "detect_ids": [], "total_num": 62}
+{"data_name": "VPI_web_text.jsonl", "tpr": 0.0, "detect_ids": [], "total_num": 114}
+{"data_name": "VWA_adv_w_EI.jsonl", "tpr": 0.0, "detect_ids": [], "total_num": 94}
+{"data_name": "VWA_adv_wo_EI.jsonl", "tpr": 0.0, "detect_ids": [], "total_num": 204}
+{"data_name": "EIA_wo_EI.jsonl", "tpr": 0.0, "detect_ids": [], "total_num": 186}
