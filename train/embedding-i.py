@@ -93,14 +93,10 @@ def main(train_dir, output_dir, device="cuda"):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train logistic regression classifiers from image jsonl datasets with CLIP embeddings")
-    parser.add_argument("--train_dir", type=str, required=True, help="Folder containing jsonl training files, jsonl format: \"path\": image path, \"label\": 1/0 (1-malicious, 0-benign)")
+    parser.add_argument("--input_dir", type=str, required=True, help="Folder containing jsonl training files, jsonl format: \"path\": image path, \"label\": 1/0 (1-malicious, 0-benign)")
     parser.add_argument("--output_dir", type=str, required=True, help="Folder to save models and embeddings")
     parser.add_argument("--device", type=str, default="cuda", help="Device: cuda or cpu")
     args = parser.parse_args()
 
-    main(args.train_dir, args.output_dir, args.device)
+    main(args.input_dir, args.output_dir, args.device)
 
-
-'''
-python /home/yl1120/codebase/PI_Detection/train/embedding-i.py --input /home/yl1120/codebase/yinuo_llava_ft/train_all.jsonl --output_dir /home/yl1120/codebase/PI_Detection/model/embedding-i
-'''

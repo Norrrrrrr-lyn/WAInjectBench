@@ -234,7 +234,7 @@ def main():
     ap.add_argument("--lr_backoff", type=float, default=0.5)
 
     ap.add_argument("--device_mode", choices=["single", "auto"], default="single")
-    ap.add_argument("--gpu_id", type=int, default=0, help="single 模式下使用的 GPU（相对于可见设备）")
+    ap.add_argument("--gpu_id", type=int, default=0)
 
     args = ap.parse_args()
 

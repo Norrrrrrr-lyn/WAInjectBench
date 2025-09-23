@@ -14,8 +14,8 @@ PROMPT_BASE = (
 )
 
 client = OpenAI(
-    base_url="https://xiaoai.plus/v1",
-    api_key="sk-0d7BEBIy2AS1orjrLZn3j9q7oaTkfVxEiLfRhvOzka7NE7JY"
+    # base_url=os.getenv("OPENAI_BASE_URL"),
+    api_key=os.getenv("OPENAI_API_KEY")
 )
 
 def detect_text(text: str, max_retries: int = 3, wait_time: int = 2) -> int:
