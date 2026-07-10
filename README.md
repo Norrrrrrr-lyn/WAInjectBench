@@ -77,7 +77,7 @@ GPT-4o-Prompt → requires OPENAI_API_KEY as environment variable.
 
 JailGuard →
 ```bash
-git clone https://github.com/JailGuardRepo/jailguard.git
+git clone https://github.com/shiningrain/JailGuard.git
 ```
 
 Follow its README to configure MiniGPT4.
