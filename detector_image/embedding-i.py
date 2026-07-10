@@ -14,10 +14,9 @@ import torch
 import open_clip
 
 
-MODEL_PATH = Path("/home/yl1120/codebase/yinuo_embedding_i/out-of-domain/models/clip_logreg.joblib")
+MODEL_PATH = Path("model/embedding-i/out-of-domain.joblib")
 
-# embedding 缓存目录
-CACHE_ROOT = Path("/tmp/embedding_i_cache")
+CACHE_ROOT = Path("tmp/embedding_i_cache")
 
 SUPPORTED_EXTS = {".png", ".jpg", ".jpeg", ".bmp", ".webp"}
 
@@ -39,10 +38,7 @@ else:
 
 
 def get_cache_root_for_dir(img_dir: Path) -> Path:
-    """
-    给每个输入图片根目录生成一个唯一 cache 目录。
-    同时避免路径中出现太多 '/' 导致混乱。
-    """
+
     img_dir = img_dir.resolve()
     dir_hash = hashlib.md5(str(img_dir).encode("utf-8")).hexdigest()[:12]
     return CACHE_ROOT / f"{img_dir.name}_{dir_hash}"
@@ -50,14 +46,12 @@ def get_cache_root_for_dir(img_dir: Path) -> Path:
 
 def get_embedding_cache_path(img_path: Path, img_dir: Path, cache_dir: Path) -> Path:
     """
-    保持 img_dir 内部结构。
-
     Example:
         img_dir = /data/images
         img_path = /data/images/a/b/1.bmp
 
         cache path:
-        /tmp/embedding_i_cache/images_xxx/a/b/1.npy
+        tmp/embedding_i_cache/images_xxx/a/b/1.npy
     """
     rel_path = img_path.resolve().relative_to(img_dir.resolve())
     cache_path = cache_dir / rel_path
@@ -66,9 +60,6 @@ def get_embedding_cache_path(img_path: Path, img_dir: Path, cache_dir: Path) -> 
 
 
 def list_images(img_dir: Path) -> List[Path]:
-    """
-    递归扫描图片，保持排序，保证结果稳定。
-    """
     img_files = [
         p for p in img_dir.rglob("*")
         if p.is_file() and p.suffix.lower() in SUPPORTED_EXTS
@@ -78,14 +69,6 @@ def list_images(img_dir: Path) -> List[Path]:
 
 
 def extract_one_embedding(img_path: Path) -> np.ndarray:
-    """
-    提取单张图片的 CLIP embedding。
-    注意：这里必须和训练时保持一致：
-    Image.open(...).convert("RGB")
-    CLIP_PREPROCESS
-    encode_image
-    L2 normalize
-    """
     image = Image.open(img_path).convert("RGB")
     image = CLIP_PREPROCESS(image).unsqueeze(0).to(device)
 
@@ -98,10 +81,6 @@ def extract_one_embedding(img_path: Path) -> np.ndarray:
 
 
 def load_or_compute_embedding(img_path: Path, img_dir: Path, cache_dir: Path) -> Union[np.ndarray, None]:
-    """
-    如果 embedding 已经存在，则直接读取。
-    如果不存在，则计算并保存。
-    """
     cache_path = get_embedding_cache_path(img_path, img_dir, cache_dir)
 
     if cache_path.exists():
@@ -125,10 +104,6 @@ def load_or_compute_embedding(img_path: Path, img_dir: Path, cache_dir: Path) ->
 
 
 def parse_image_id(img_path: Path) -> Union[int, str]:
-    """
-    如果图片名是 1.png / 2.bmp，返回 int。
-    如果不是纯数字，例如 image_001.bmp，则返回 stem 字符串。
-    """
     try:
         return int(img_path.stem)
     except ValueError:
